@@ -54,9 +54,15 @@ const isStaging = import.meta.env.BASE_URL.replace(/\/$/, '') !== '';
   nav a:hover{color:var(--txt)}
   .btn{background:#fff;color:var(--bg)!important;padding:9px 17px;border-radius:3px;font-weight:600;text-decoration:none}
   .btn:hover{background:var(--accent);color:#fff!important}
-  /* scroll-reveal, fail-open */
-  .rise{transition:opacity .6s ease, transform .6s ease}
-  html.js .rise{opacity:0;transform:translateY(16px)}
+  /* scroll-reveal, fail-open + tasteful variants */
+  .rise{transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); transition-delay:var(--rd,0s)}
+  html.js .rise{opacity:0;transform:translateY(18px)}
+  html.js .rise.from-left{transform:translateX(-26px)}
+  html.js .rise.from-right{transform:translateX(26px)}
+  html.js .rise.zoom{transform:scale(.955)}
   html.js .rise.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion: reduce){html.js .rise,.rise{opacity:1;transform:none;transition:none}}
+  @media (prefers-reduced-motion: reduce){
+    html.js .rise,.rise{opacity:1!important;transform:none!important;transition:none!important;transition-delay:0s!important}
+    .floaty{animation:none!important}
+  }
 </style>

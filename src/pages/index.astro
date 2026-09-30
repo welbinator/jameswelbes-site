@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="hero">
     <div class="glow"></div>
     <div class="wrap hero-grid">
-      <div class="hero-copy">
+      <div class="hero-copy stagger">
         <div class="eyebrow rise">One human · commanding AI</div>
         <h1 class="rise">One human.<br>An army of <span class="hl">AI agents</span>.<br>Zero BS.</h1>
         <p class="lead rise">I'm James Welbes. For over a decade I've built websites and led products by hand. Now I do it with a swarm of AI working under me - the judgment of a human, the horsepower of a machine. That's a combination almost nobody offers, and it's exactly what your project needs.</p>
@@ -20,7 +20,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
       </div>
     </div>
-    <img class="hero-bg" src={base + '/img/james-900.webp'}
+    <img class="hero-bg floaty" src={base + '/img/james-900.webp'}
       srcset={`${base}/img/james-640.webp 640w, ${base}/img/james-900.webp 900w, ${base}/img/james-1256.webp 1256w`}
       sizes="(max-width: 860px) 82vw, 720px"
       width="1256" height="838" fetchpriority="high" decoding="async"
@@ -32,18 +32,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="wrap">
       <div class="k rise" style="color:#8fa4ff">The idea</div>
       <h2 class="rise th-h">Pure AI is reckless. One person is capped.<br>The magic is a human <span class="hl">in command</span> of AI.</h2>
-      <div class="tri">
-        <div class="tcard rise">
+      <div class="tri stagger">
+        <div class="tcard rise zoom">
           <div class="tlabel bad-l">100% AI</div>
           <h3>Fast, but reckless</h3>
           <p>AI alone is confident and wrong at scale. No taste, no accountability, no idea when it's quietly breaking your business. It'll ship you garbage at lightning speed.</p>
         </div>
-        <div class="tcard rise">
+        <div class="tcard rise zoom">
           <div class="tlabel warn-l">One human</div>
           <h3>Careful, but capped</h3>
           <p>A single person brings judgment and craft - but there are only so many hours in a day. Good work, slowly, and expensively. Everyone hits the same ceiling.</p>
         </div>
-        <div class="tcard feature rise">
+        <div class="tcard feature rise zoom">
           <div class="tlabel good-l">Human + AI</div>
           <h3>Both. That's me.</h3>
           <p>I steer a fleet of AI agents that do the heavy lifting, then I apply the taste, the judgment, and the accountability a machine will never have. Speed <em>and</em> sense.</p>
@@ -89,22 +89,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- ABOUT -->
   <section id="about" class="about">
     <div class="wrap about-grid">
-      <div class="about-photo rise">
+      <div class="about-photo rise from-left">
         <img src={base + '/img/james2-600.webp'}
           srcset={`${base}/img/james2-600.webp 600w, ${base}/img/james2.webp 1000w`}
           sizes="(max-width: 860px) 82vw, 460px"
           width="1000" height="1250" loading="lazy" decoding="async" alt="James Welbes at sunset over the water, cigar in hand" />
       </div>
-      <div class="rise">
+      <div class="rise from-right">
         <div class="k" style="color:#8fa4ff">Who's actually in charge</div>
         <h2 class="about-h">A decade of doing this by hand - now amplified.</h2>
         <p class="about-p">I've worn every hat in this business: agency owner, developer, product owner, and yes, the video-tutorial guy. As former Product Owner at StellarWP (Liquid Web), I owned roadmaps and shipped real software used by thousands of sites.</p>
         <p class="about-p">That experience is the part AI can't fake. I know what "done right" looks like, I know where projects quietly rot, and I know when the machine is confidently wrong. So I let AI do what it's great at - volume, speed, tireless iteration - and I stay the human who's accountable for the result.</p>
-        <ul class="creds">
-          <li><b>10+ years</b> in the web &amp; WordPress ecosystem</li>
-          <li><b>Ex-Product Owner</b>, StellarWP / Liquid Web</li>
-          <li><b>Agency owner</b> since 2015 · Cedar Rapids, Iowa</li>
-          <li><b>Real software shipped</b> - plugins, MVPs, products in market</li>
+        <ul class="creds stagger">
+          <li class="rise"><b>10+ years</b> in the web &amp; WordPress ecosystem</li>
+          <li class="rise"><b>Ex-Product Owner</b>, StellarWP / Liquid Web</li>
+          <li class="rise"><b>Agency owner</b> since 2015 · Cedar Rapids, Iowa</li>
+          <li class="rise"><b>Real software shipped</b> - plugins, MVPs, products in market</li>
         </ul>
       </div>
     </div>
@@ -115,10 +115,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="wrap">
       <div class="k rise">A few things I've built</div>
       <h2 class="rise">Real software. Real sites. Shipped.</h2>
-      <div class="grid3">
-        <div class="cell rise"><div class="num">01</div><h3>YouTube for WordPress</h3><p>A plugin that imports and displays videos from a YouTube channel - built, shipped, and in real use.</p></div>
-        <div class="cell rise"><div class="num">02</div><h3>CloneWP</h3><p>Clone plugins or themes straight into your site from GitHub. A developer tool that solves a real, tedious problem.</p></div>
-        <div class="cell rise"><div class="num">03</div><h3>RoadMapWP</h3><p>User-driven product roadmaps - turning customer feedback into a prioritized plan you can actually ship against.</p></div>
+      <div class="grid3 stagger">
+        <div class="cell rise zoom"><div class="num">01</div><h3>YouTube for WordPress</h3><p>A plugin that imports and displays videos from a YouTube channel - built, shipped, and in real use.</p></div>
+        <div class="cell rise zoom"><div class="num">02</div><h3>CloneWP</h3><p>Clone plugins or themes straight into your site from GitHub. A developer tool that solves a real, tedious problem.</p></div>
+        <div class="cell rise zoom"><div class="num">03</div><h3>RoadMapWP</h3><p>User-driven product roadmaps - turning customer feedback into a prioritized plan you can actually ship against.</p></div>
       </div>
     </div>
   </section>
@@ -167,6 +167,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .glow{position:absolute;top:-120px;right:-40px;width:720px;height:720px;background:radial-gradient(circle,rgba(26,79,255,.30),transparent 62%);filter:blur(20px);pointer-events:none;z-index:0}
   .hero-bg{position:absolute;bottom:0;right:-120px;height:98%;width:auto;max-width:75%;object-fit:contain;object-position:bottom right;z-index:1;filter:drop-shadow(0 26px 70px rgba(0,0,0,.6));-webkit-mask-image:linear-gradient(to right,transparent,#000 22%);mask-image:linear-gradient(to right,transparent,#000 22%)}
   .hero-grid{position:relative;z-index:2;width:100%}
+  /* slow, gentle float on the hero portrait (motion-safe via .floaty guard) */
+  .floaty{animation:floaty 7s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  /* thesis cards get the same lift-on-hover the work cells have */
+  .tcard{transition:border-color .2s,transform .2s,box-shadow .2s}
+  .tcard:hover{transform:translateY(-3px)}
+  .tcard.feature:hover{transform:translateY(-3px)}
   .hero-copy{max-width:600px}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
   h1{font-size:66px;line-height:1.02;font-weight:700;margin:16px 0 20px;letter-spacing:-.035em}
@@ -321,7 +328,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <script define:vars={{ base }}>
   document.documentElement.classList.add('js');
-  // scroll reveal, fail-open
+  // scroll reveal, fail-open. Supports .rise variants + .stagger children.
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Auto-stagger: any .stagger container gives its direct .rise children an increasing delay.
+  if(!reduce){
+    document.querySelectorAll('.stagger').forEach(group=>{
+      let i=0;
+      [...group.children].forEach(child=>{
+        const el = child.classList.contains('rise') ? child : child.querySelector(':scope > .rise');
+        if(el){ el.style.setProperty('--rd', (i*90)+'ms'); i++; }
+      });
+    });
+  }
   const risers = [...document.querySelectorAll('.rise')];
   const io = new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -8% 0px',threshold:0.08});
   risers.forEach(el=>io.observe(el));
