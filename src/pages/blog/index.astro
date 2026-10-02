@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout title="Blog | James Welbes" description="Writing on websites, AI, and getting people off WordPress. By James Welbes.">
+  <Header />
+
+  <main class="blog-wrap">
+    <div class="wrap">
+      <header class="blog-head stagger">
+        <div class="eyebrow rise">Writing</div>
+        <h1 class="rise">The blog</h1>
+        <p class="lead rise">Notes on websites, AI, and getting people off WordPress. No fluff, just what I've actually run into.</p>
+      </header>
+
+      <ul class="post-list stagger">
+        {posts.map((post) => (
+          <li class="post-item rise">
+            <a href={`${base}/blog/${post.slug}`}>
+              <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <span class="read">Read it →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && <p class="empty">Nothing posted yet. Check back soon.</p>}
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/'}>Home</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .blog-wrap{padding:72px 0 96px;min-height:70vh}
+  .blog-head{max-width:760px;margin:0 0 56px}
+  .eyebrow{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8fa4ff;margin-bottom:14px}
+  .blog-head h1{font-size:clamp(34px,6vw,54px);line-height:1.04;margin-bottom:18px}
+  .blog-head .lead{font-size:19px;color:var(--mut);line-height:1.55}
+
+  .post-list{list-style:none;display:flex;flex-direction:column;gap:18px;max-width:820px}
+  .post-item a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:26px 28px;transition:border-color .2s ease,transform .2s ease}
+  .post-item a:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .post-item time{font-size:13px;color:var(--mut);font-weight:500}
+  .post-item h2{font-size:24px;line-height:1.18;margin:8px 0 10px;color:var(--txt)}
+  .post-item p{color:var(--mut);line-height:1.55;font-size:15px;margin-bottom:14px}
+  .post-item .read{font-family:var(--font-display);font-size:14px;font-weight:600;color:#8fa4ff}
+
+  .empty{color:var(--mut)}
+
+  .site-foot{border-top:1px solid var(--line2);padding:28px 0}
+  .site-foot .wrap{display:flex;align-items:center;justify-content:space-between;color:var(--mut);font-size:14px}
+  .site-foot a{text-decoration:none;color:var(--mut)}
+  .site-foot a:hover{color:var(--txt)}
+
+  @media(max-width:720px){
+    .blog-wrap{padding:48px 0 72px}
+    .post-item a{padding:22px}
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 6 * 0.05) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+</script>

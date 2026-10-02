@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 export default defineConfig({
-  site: 'https://apexbranding.design',
+  site: 'https://jameswelbes.com',
   base: process.env.PAGES_BASE || '/',
   build: { format: 'directory' }
 });

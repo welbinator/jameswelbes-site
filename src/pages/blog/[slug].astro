@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout title={`${post.data.title} | James Welbes`} description={post.data.description}>
+  <Header />
+
+  <main class="article-wrap">
+    <div class="wrap">
+      <a class="back" href={base + '/blog'}>← All posts</a>
+
+      <article class="article">
+        <header class="article-head">
+          <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+          <h1>{post.data.title}</h1>
+        </header>
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+
+      <div class="article-cta">
+        <p>Thinking about getting off WordPress?</p>
+        <a href={base + '/#audit'} class="btn-accent">Audit my site free →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/'}>Home</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .article-wrap{padding:56px 0 96px}
+  .back{display:inline-block;font-family:var(--font-display);font-size:14px;font-weight:600;color:#8fa4ff;text-decoration:none;margin-bottom:34px}
+  .back:hover{color:var(--txt)}
+
+  .article{max-width:720px;margin:0 auto}
+  .article-head{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--line2)}
+  .article-head time{font-size:14px;color:var(--mut);font-weight:500}
+  .article-head h1{font-size:clamp(30px,5.5vw,46px);line-height:1.08;margin-top:12px}
+
+  .prose{color:var(--txt);font-size:18px;line-height:1.72}
+  .prose :global(p){margin:0 0 24px}
+  .prose :global(h2){font-family:var(--font-display);font-size:26px;line-height:1.2;margin:46px 0 18px;letter-spacing:-.02em}
+  .prose :global(a){color:#8fa4ff;text-decoration:underline;text-underline-offset:3px}
+  .prose :global(ul),.prose :global(ol){margin:0 0 24px;padding-left:24px}
+  .prose :global(li){margin-bottom:8px}
+  .prose :global(strong){color:#fff;font-weight:600}
+  .prose :global(code){background:var(--card);border:1px solid var(--line2);border-radius:5px;padding:2px 6px;font-size:.88em}
+  .prose :global(blockquote){border-left:3px solid var(--accent);margin:0 0 24px;padding:4px 0 4px 20px;color:var(--mut)}
+
+  .article-cta{max-width:720px;margin:64px auto 0;padding:36px 32px;background:var(--card);border:1px solid var(--line2);border-radius:16px;text-align:center}
+  .article-cta p{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:18px;letter-spacing:-.02em}
+  .btn-accent{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:4px;font-family:var(--font-display)}
+  .btn-accent:hover{filter:brightness(1.1)}
+
+  .site-foot{border-top:1px solid var(--line2);padding:28px 0;margin-top:64px}
+  .site-foot .wrap{display:flex;align-items:center;justify-content:space-between;color:var(--mut);font-size:14px}
+  .site-foot a{text-decoration:none;color:var(--mut)}
+  .site-foot a:hover{color:var(--txt)}
+
+  @media(max-width:720px){
+    .article-wrap{padding:36px 0 64px}
+    .prose{font-size:17px}
+  }
+</style>
