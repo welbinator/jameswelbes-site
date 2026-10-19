@@ -5,3 +5,5 @@ dist/
 .astro/
 *.db*
 .DS_Store
+.wrangler-cache/
+.npm-cache/
