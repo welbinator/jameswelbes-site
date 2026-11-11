@@ -34,6 +34,16 @@ const projects = [
     status: 'Live',
     date: '2026',
   },
+  {
+    slug: 'client-support-portal',
+    title: 'Client Support Portal',
+    tagline: 'Clients log in or just send an email. I get notified, then decide: let AI handle it or take it myself. Built into every client site.',
+    tags: ['Internal Tool', 'Web App', 'AI-Assisted'],
+    tech: ['Astro', 'Cloudflare Workers', 'D1', 'Brevo'],
+    img: '/img/built/support-portal-mockup.png',
+    status: 'Live',
+    date: '2026',
+  },
 ];
 
 const allTags = [...new Set(projects.flatMap(p => p.tags))];

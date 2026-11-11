@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Client Support Portal | Builds | James Welbes"
+  description="A white-labeled client support system built into every client site. Clients log in or email in, James gets notified, and can choose to let AI handle it or take it himself."
+>
+  <Header />
+
+  <main class="case-wrap">
+
+    <section class="case-hero">
+      <div class="wrap">
+        <div class="breadcrumb rise"><a href={base + '/builds'}>← Builds</a></div>
+        <div class="eyebrow rise">Case Study</div>
+        <h1 class="rise">Client Support Portal</h1>
+        <p class="lead rise">A support ticket system built into every client site. Clients log in or just send an email. James gets notified either way, then decides: let AI handle it, or take it himself.</p>
+        <div class="meta-row rise">
+          <span class="meta-pill">Internal Tool</span>
+          <span class="meta-pill">Web App</span>
+          <span class="meta-pill live">Live</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-screenshot">
+      <div class="wrap">
+        <div class="screen-frame rise">
+          <img
+            src={base + '/img/built/support-portal-mockup.png'}
+            alt="Client support portal login screen"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Problem</div></div>
+        <div class="case-content">
+          <h2 class="rise">Support requests were scattered everywhere</h2>
+          <p class="rise">Client requests came in through text messages, random emails, Facebook messages, and the occasional phone call at 8pm. There was no central record. No way to track what was pending, what was done, or what had been approved. Every request lived in a different inbox.</p>
+          <p class="rise">The goal was simple: one place for clients to submit requests, one place for me to see and manage them, and a clear record of everything that was asked and done.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">How Clients Use It</div></div>
+        <div class="case-content">
+          <h2 class="rise">Two ways in: the portal or just an email</h2>
+          <p class="rise">Clients don't have to change how they work. There are two ways to submit a request:</p>
+          <ul class="feature-list rise">
+            <li><strong>The portal</strong>: each client site has a <code>/support</code> page. Clients log in with their own credentials and submit a request through a form. It's clean, simple, and shows them their own ticket history</li>
+            <li><strong>Email</strong>: clients can just email a dedicated support address. The email gets parsed automatically, matched to the right client, and turned into a ticket. No portal login required</li>
+          </ul>
+          <p class="rise">Either way, the ticket lands in the same place: the Command Center, where I can see and manage everything across all clients from one dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Dispatch Gate</div></div>
+        <div class="case-content">
+          <h2 class="rise">AI handles it, or I do. My call every time.</h2>
+          <p class="rise">When a new ticket comes in, I get notified. The ticket sits in a "pending" state until I decide what happens next. I have two choices:</p>
+          <div class="dispatch-cards rise">
+            <div class="dispatch-card">
+              <div class="dispatch-icon">🤖</div>
+              <div>
+                <strong>Let AI handle it</strong>
+                <p>Releases the ticket to the AI agent. It reads the request, makes the change, creates a staging preview, and notifies the client for approval. I don't touch it unless something needs a judgment call.</p>
+              </div>
+            </div>
+            <div class="dispatch-card">
+              <div class="dispatch-icon">✋</div>
+              <div>
+                <strong>I'll handle this</strong>
+                <p>Flags the ticket as manual. AI stays out entirely. I work the ticket myself, update the status, and push to staging when ready. Good for complex requests or anything that needs a conversation.</p>
+              </div>
+            </div>
+          </div>
+          <p class="rise">This gives me the efficiency of AI automation for routine requests while keeping full control over anything sensitive or complex. I'm never locked out of my own process.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Approval Loop</div></div>
+        <div class="case-content">
+          <h2 class="rise">Clients approve changes before they go live</h2>
+          <p class="rise">Whether AI or I make the change, the client sees it on a staging preview before anything hits production. They get a link, review the change, and click approve. That approval is cryptographically verified and flips the ticket to approved status automatically.</p>
+          <p class="rise">If the client originally emailed in, the staging link goes back to them by email. If they used the portal, they see it there. The workflow adapts to however they came in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">How It Was Built</div></div>
+        <div class="case-content">
+          <h2 class="rise">One system, deployed on every client site</h2>
+          <p class="rise">The support portal is a reusable pattern. The same support page, login system, and ticket API get deployed on every client site. Each client gets their own D1 database and their own branded login screen, but the underlying code is identical.</p>
+          <div class="tech-stack rise">
+            <div class="tech-item">
+              <span class="tech-label">Client portal</span>
+              <span class="tech-val">Astro + Cloudflare Workers. Each client site has its own /support page and D1 ticket database</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Email intake</span>
+              <span class="tech-val">Brevo inbound parse. Emails to the support address are parsed and routed to the right client automatically</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Command Center</span>
+              <span class="tech-val">Central hub on a Hetzner VPS. All tickets from all clients aggregate here. One dashboard to manage everything</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Dispatch</span>
+              <span class="tech-val">Custom dispatch gate: new tickets wait for a human decision before AI automation fires</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Built with</span>
+              <span class="tech-val">Claude (Hermes Agent), from initial architecture through every iteration of the email, approval, and dispatch systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-cta">
+      <div class="wrap">
+        <div class="cta-box rise">
+          <h2>Want something like this for your clients?</h2>
+          <p>If you're managing multiple client websites and drowning in scattered requests, this kind of system is exactly what AI can help build fast. Let's talk.</p>
+          <a href={base + '/#audit'} class="btn-accent">Let's talk →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/builds'}>← All projects</a>
+    </div>
+  </footer>
+
+</Layout>
+
+<style>
+  .case-wrap { padding-bottom: 0; }
+  .case-hero { padding: 72px 0 48px; }
+  .breadcrumb { margin-bottom: 20px; font-size: 14px; }
+  .breadcrumb a { color: var(--mut); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--txt); }
+  .eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8fa4ff; margin-bottom: 14px; }
+  .case-hero h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.03; margin-bottom: 20px; }
+  .case-hero .lead { font-size: 20px; color: var(--mut); line-height: 1.55; max-width: 640px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-pill { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line2); color: var(--mut); }
+  .meta-pill.live { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .case-screenshot { padding: 0 0 64px; }
+  .screen-frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line2); background: var(--bg2); box-shadow: 0 24px 64px rgba(0,0,0,.4); }
+  .screen-frame img { width: 100%; display: block; }
+  .case-section { padding: 72px 0; border-top: 1px solid var(--line2); }
+  .case-section.alt { background: var(--bg2); }
+  .case-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+  .section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); padding-top: 8px; }
+  .case-content h2 { font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 20px; line-height: 1.2; }
+  .case-content p { color: var(--mut); line-height: 1.7; font-size: 16px; margin-bottom: 16px; }
+  .case-content p:last-child { margin-bottom: 0; }
+  .case-content strong { color: var(--txt); font-weight: 600; }
+  .case-content code { font-family: monospace; font-size: 14px; background: var(--bg2); padding: 2px 6px; border-radius: 4px; color: #8fa4ff; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0 0 20px; }
+  .feature-list li { padding-left: 20px; position: relative; color: var(--mut); font-size: 16px; line-height: 1.6; }
+  .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .dispatch-cards { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .dispatch-card { display: flex; gap: 16px; align-items: flex-start; background: var(--bg2); border: 1px solid var(--line2); border-radius: 12px; padding: 20px; }
+  .dispatch-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .dispatch-card strong { display: block; color: var(--txt); font-size: 16px; margin-bottom: 6px; }
+  .dispatch-card p { color: var(--mut); font-size: 14px; line-height: 1.6; margin: 0; }
+  .tech-stack { display: flex; flex-direction: column; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; margin: 24px 0; }
+  .tech-item { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line2); }
+  .tech-item:last-child { border-bottom: none; }
+  .tech-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); padding-top: 2px; }
+  .tech-val { font-size: 14px; color: var(--txt); line-height: 1.5; }
+  .case-cta { padding: 72px 0 96px; border-top: 1px solid var(--line2); }
+  .cta-box { background: linear-gradient(135deg, rgba(26,79,255,.12) 0%, rgba(26,79,255,.04) 100%); border: 1px solid rgba(26,79,255,.25); border-radius: 20px; padding: 48px; max-width: 680px; }
+  .cta-box h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 14px; }
+  .cta-box p { color: var(--mut); font-size: 16px; line-height: 1.65; margin-bottom: 28px; }
+  .btn-accent { background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-decoration: none; display: inline-block; transition: opacity .15s; }
+  .btn-accent:hover { opacity: .88; }
+  .site-foot { border-top: 1px solid var(--line2); padding: 28px 0; }
+  .site-foot .wrap { display: flex; align-items: center; justify-content: space-between; color: var(--mut); font-size: 14px; }
+  .site-foot a { text-decoration: none; color: var(--mut); }
+  .site-foot a:hover { color: var(--txt); }
+  @media(max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; gap: 24px; }
+    .case-sidebar { display: none; }
+    .cta-box { padding: 32px 24px; }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 8 * 0.04) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+</script>
