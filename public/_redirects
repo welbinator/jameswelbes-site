@@ -1,1 +1,5 @@
 /website  /  301
+/built  /builds  301
+/built/*  /builds/:splat  301
+/things-ive-built  /builds  301
+/things-ive-built/*  /builds/:splat  301

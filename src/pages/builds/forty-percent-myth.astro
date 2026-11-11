@@ -1,0 +1,194 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="The 40% Myth | Builds | James Welbes"
+  description="A hyperlocal research project going city by city to find out how many real local businesses actually use WordPress. Raw data, no spin."
+>
+  <Header />
+
+  <main class="case-wrap">
+
+    <section class="case-hero">
+      <div class="wrap">
+        <div class="breadcrumb rise"><a href={base + '/builds'}>← Builds</a></div>
+        <div class="eyebrow rise">Case Study</div>
+        <h1 class="rise">The 40% Myth</h1>
+        <p class="lead rise">They say WordPress powers 40% of all websites. We hit the streets of real cities to find out.</p>
+        <div class="meta-row rise">
+          <span class="meta-pill">Research</span>
+          <span class="meta-pill">Web App</span>
+          <span class="meta-pill live">Live</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-screenshot">
+      <div class="wrap">
+        <div class="screen-frame rise">
+          <img
+            src={base + '/img/built/40pm-mockup.png'}
+            alt="The 40% Myth site showing research data and directory"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Claim</div></div>
+        <div class="case-content">
+          <h2 class="rise">The stat that gets quoted everywhere</h2>
+          <p class="rise">"WordPress powers 40% of all websites." You've seen it in sales decks, blog posts, WordPress.com marketing, and agency pitches. It's the statistic that makes WordPress sound like the dominant force on the web, the obvious choice, the safe bet.</p>
+          <p class="rise">But the stat comes from an analysis of all indexed websites, which includes millions of parked domains, abandoned blogs, test sites, and low-traffic filler. It says nothing about what real local businesses in real cities are actually using to run their online presence today.</p>
+          <div class="callout rise">
+            <strong>The question:</strong> If you walk down the main street of any American city and check every business you can find, how many of them actually use WordPress?
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Method</div></div>
+        <div class="case-content">
+          <h2 class="rise">City by city, business by business</h2>
+          <p class="rise">The 40% Myth is a hyperlocal research project. We go city by city, check every local business we can find via Google Maps, and manually verify what platform (if any) they're running. No scraping at scale. No assumptions. Just real businesses, manually checked.</p>
+          <ul class="feature-list rise">
+            <li>Each business is manually verified, website opened, CMS detected via Wappalyzer, response headers, and HTML source inspection</li>
+            <li>Businesses are categorized: has a website, uses WordPress, uses another platform, or has no web presence at all</li>
+            <li>Raw data is published in full. No spin, no cherry-picking, no agenda</li>
+            <li>Cities are added over time. Each city adds a new slice of real-world data</li>
+          </ul>
+          <p class="rise">The goal isn't to prove WordPress is bad. The goal is to find out what the data actually says when you look at the ground level, not from 30,000 feet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">How It Was Built</div></div>
+        <div class="case-content">
+          <h2 class="rise">A research platform built with AI</h2>
+          <p class="rise">The site itself is a Cloudflare Workers app backed by D1 (Cloudflare's edge SQLite database). The research data lives in D1, the front-end queries it via Workers, and everything is served globally from Cloudflare's edge with no origin server to maintain.</p>
+          <div class="tech-stack rise">
+            <div class="tech-item">
+              <span class="tech-label">Backend</span>
+              <span class="tech-val">Cloudflare Workers + D1 (edge SQLite). No server to manage, no cold starts</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Frontend</span>
+              <span class="tech-val">Vanilla JS with sortable/filterable data tables. Keeps it fast and dependency-free</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Data entry</span>
+              <span class="tech-val">Custom admin interface for logging businesses quickly during research sessions</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Built with</span>
+              <span class="tech-val">Claude (Hermes Agent), iterating on the data model and front-end in real sessions</span>
+            </div>
+          </div>
+          <p class="rise">AI handled the architecture decisions, schema design, and implementation. The research itself, the city selection, and the judgment calls on CMS detection are all human. The combination made it possible to go from idea to live research platform in a single session.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">Why It Matters</div></div>
+        <div class="case-content">
+          <h2 class="rise">The number is a sales tool, not a fact</h2>
+          <p class="rise">The "40%" figure is real in a narrow technical sense. But it's used to justify recommending WordPress to clients who would often be better served by something simpler, faster, and more secure. When you look at real local businesses, the picture is more complicated.</p>
+          <p class="rise">A lot of those businesses have no website at all. Many that do are on Squarespace, Wix, GoDaddy site builder, or nothing recognizable. WordPress's actual share of <em>functional, active local business websites</em> is a very different number than 40%.</p>
+          <p class="rise">The data is at <a href="https://40percentmyth.com" target="_blank" rel="noopener">40percentmyth.com</a>. It's public, downloadable, and grows as more cities are added.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-cta">
+      <div class="wrap">
+        <div class="cta-box rise">
+          <h2>Have a research idea like this?</h2>
+          <p>An argument that needs data behind it, a dataset that needs a home, a question worth answering publicly. AI makes it fast to go from question to live platform. Let's talk.</p>
+          <a href={base + '/#audit'} class="btn-accent">Let's talk →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/builds'}>← All projects</a>
+    </div>
+  </footer>
+
+</Layout>
+
+<style>
+  .case-wrap { padding-bottom: 0; }
+  .case-hero { padding: 72px 0 48px; }
+  .breadcrumb { margin-bottom: 20px; font-size: 14px; }
+  .breadcrumb a { color: var(--mut); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--txt); }
+  .eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8fa4ff; margin-bottom: 14px; }
+  .case-hero h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.03; margin-bottom: 20px; }
+  .case-hero .lead { font-size: 20px; color: var(--mut); line-height: 1.55; max-width: 640px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-pill { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line2); color: var(--mut); }
+  .meta-pill.live { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .case-screenshot { padding: 0 0 64px; }
+  .screen-frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line2); background: var(--bg2); box-shadow: 0 24px 64px rgba(0,0,0,.4); }
+  .screen-frame img { width: 100%; display: block; }
+  .case-section { padding: 72px 0; border-top: 1px solid var(--line2); }
+  .case-section.alt { background: var(--bg2); }
+  .case-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+  .section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); padding-top: 8px; }
+  .case-content h2 { font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 20px; line-height: 1.2; }
+  .case-content p { color: var(--mut); line-height: 1.7; font-size: 16px; margin-bottom: 16px; }
+  .case-content p:last-child { margin-bottom: 0; }
+  .case-content a { color: #8fa4ff; }
+  .case-content em { font-style: italic; color: var(--txt); }
+  .case-content strong { color: var(--txt); font-weight: 600; }
+  .callout { background: rgba(26,79,255,.08); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; color: var(--mut); font-size: 15px; line-height: 1.6; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0 0 20px; }
+  .feature-list li { padding-left: 20px; position: relative; color: var(--mut); font-size: 16px; line-height: 1.6; }
+  .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .tech-stack { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; margin: 24px 0; }
+  .tech-item { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line2); }
+  .tech-item:last-child { border-bottom: none; }
+  .tech-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); padding-top: 2px; }
+  .tech-val { font-size: 14px; color: var(--txt); line-height: 1.5; }
+  .case-cta { padding: 72px 0 96px; border-top: 1px solid var(--line2); }
+  .cta-box { background: linear-gradient(135deg, rgba(26,79,255,.12) 0%, rgba(26,79,255,.04) 100%); border: 1px solid rgba(26,79,255,.25); border-radius: 20px; padding: 48px; max-width: 680px; }
+  .cta-box h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 14px; }
+  .cta-box p { color: var(--mut); font-size: 16px; line-height: 1.65; margin-bottom: 28px; }
+  .btn-accent { background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-decoration: none; display: inline-block; transition: opacity .15s; }
+  .btn-accent:hover { opacity: .88; }
+  .site-foot { border-top: 1px solid var(--line2); padding: 28px 0; }
+  .site-foot .wrap { display: flex; align-items: center; justify-content: space-between; color: var(--mut); font-size: 14px; }
+  .site-foot a { text-decoration: none; color: var(--mut); }
+  .site-foot a:hover { color: var(--txt); }
+  @media(max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; gap: 24px; }
+    .case-sidebar { display: none; }
+    .cta-box { padding: 32px 24px; }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 8 * 0.04) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+</script>

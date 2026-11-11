@@ -1,0 +1,210 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Parchment | Builds | James Welbes"
+  description="A fast, minimal notebook app with workspaces, collections, and a full public REST API. Built for humans and agents alike."
+>
+  <Header />
+
+  <main class="case-wrap">
+
+    <section class="case-hero">
+      <div class="wrap">
+        <div class="breadcrumb rise"><a href={base + '/builds'}>← Builds</a></div>
+        <div class="eyebrow rise">Case Study</div>
+        <h1 class="rise">Parchment</h1>
+        <p class="lead rise">A fast, minimal notebook with workspaces, collections, and a full public API. Built for humans and agents alike.</p>
+        <div class="meta-row rise">
+          <span class="meta-pill">SaaS</span>
+          <span class="meta-pill">Web App</span>
+          <span class="meta-pill live">Live</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-screenshot">
+      <div class="wrap">
+        <div class="screen-frame rise">
+          <img
+            src={base + '/img/built/parchment-mockup.png'}
+            alt="Parchment app showing notes interface"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The Problem</div></div>
+        <div class="case-content">
+          <h2 class="rise">Note-taking apps that get in the way</h2>
+          <p class="rise">Most note-taking apps are either too heavy (Notion, with its databases and AI features and marketing complexity) or too dumb (Apple Notes, which is fine until you need structure). There's a gap in between: something fast and minimal that still has real organization, real block editing, and a real API.</p>
+          <p class="rise">The API angle came from working with AI agents. When you're building automations, writing scripts, or running agents that need to read and write persistent notes, you need an app that exposes a clean REST API, not one that makes you scrape a UI or reverse-engineer a private endpoint.</p>
+          <div class="callout rise">
+            <strong>The goal:</strong> A notebook that works great for a human in the browser AND for an AI agent running a script, using the same API.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">What It Does</div></div>
+        <div class="case-content">
+          <h2 class="rise">Workspaces, collections, pages, blocks</h2>
+          <p class="rise">Parchment is organized around a simple hierarchy: workspaces contain collections, collections contain pages, pages contain blocks. The structure is flexible enough for projects, research, meeting notes, checklists, and code snippets without needing a PhD in database design to set up.</p>
+          <ul class="feature-list rise">
+            <li><strong>Block-based editing</strong>: headings, text, bullets, numbered lists, todo items, quotes, dividers, code blocks, and collapsible groups</li>
+            <li><strong>Public REST API</strong>: every action available in the UI is also available via API key. Create pages, append blocks, replace content, share pages publicly</li>
+            <li><strong>Page sharing</strong>: publish any page as a public read-only link, or share privately with specific email addresses</li>
+            <li><strong>Quick Notes</strong>: a system collection that's always there, can't be deleted, works like a scratchpad</li>
+            <li><strong>Offline support</strong>: IndexedDB cache layer keeps the app usable when your connection drops</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">The API</div></div>
+        <div class="case-content">
+          <h2 class="rise">Built for agents, not just humans</h2>
+          <p class="rise">The public API is a first-class feature, not an afterthought. Every operation the UI can do is exposed via a simple JSON POST interface. You can build scripts, automate research saves, have an AI agent write to a page during a session, or query your notes from anywhere.</p>
+          <div class="tech-stack rise">
+            <div class="tech-item">
+              <span class="tech-label">Auth</span>
+              <span class="tech-val">API key (x-api-key header). Generate and revoke keys from settings</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Actions</span>
+              <span class="tech-val">list/create/get/update pages, append/replace/insert blocks, share pages, manage collections</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Rate limit</span>
+              <span class="tech-val">60 requests per minute, 1,000 per day on free tier</span>
+            </div>
+          </div>
+          <p class="rise">The Hermes Agent skill for Parchment is published at <a href="https://theparchment.app/.well-known/agent-skills/parchment/SKILL.md" target="_blank" rel="noopener">theparchment.app</a>, so any AI agent that knows to look for agent skills can discover how to use it automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise"><div class="section-label">How It Was Built</div></div>
+        <div class="case-content">
+          <h2 class="rise">React, Supabase, self-hosted on Hetzner</h2>
+          <p class="rise">Parchment is a React + TypeScript app with a self-hosted Supabase backend running on a Hetzner VPS. The choice to self-host Supabase was deliberate: full control over the database, no per-row pricing surprises, and the ability to run separate production and staging environments on the same server.</p>
+          <div class="tech-stack rise">
+            <div class="tech-item">
+              <span class="tech-label">Frontend</span>
+              <span class="tech-val">React + TypeScript + Vite + shadcn/ui + Tailwind</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Backend</span>
+              <span class="tech-val">Self-hosted Supabase (Postgres + Auth + Edge Functions)</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Hosting</span>
+              <span class="tech-val">Hetzner CX43 VPS. Production and staging both on the same box</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">State</span>
+              <span class="tech-val">Zustand for client state + IndexedDB (Dexie) for offline cache</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Built with</span>
+              <span class="tech-val">Claude (Hermes Agent), from initial scaffold through every feature iteration</span>
+            </div>
+          </div>
+          <p class="rise">Every feature was built iteratively with AI doing the implementation while the product direction, UX decisions, and architecture choices came from real use. The result is a codebase that's been through multiple refactors, a full offline-cache layer, a security audit, and a live API surface.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-cta">
+      <div class="wrap">
+        <div class="cta-box rise">
+          <h2>Want to try it?</h2>
+          <p>Parchment is live and free to use. Sign up at theparchment.app. If you're building something that needs a note-taking backend with an API, it might save you some time.</p>
+          <a href="https://theparchment.app" target="_blank" rel="noopener" class="btn-accent">Open Parchment →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/builds'}>← All projects</a>
+    </div>
+  </footer>
+
+</Layout>
+
+<style>
+  .case-wrap { padding-bottom: 0; }
+  .case-hero { padding: 72px 0 48px; }
+  .breadcrumb { margin-bottom: 20px; font-size: 14px; }
+  .breadcrumb a { color: var(--mut); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--txt); }
+  .eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8fa4ff; margin-bottom: 14px; }
+  .case-hero h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.03; margin-bottom: 20px; }
+  .case-hero .lead { font-size: 20px; color: var(--mut); line-height: 1.55; max-width: 640px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-pill { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line2); color: var(--mut); }
+  .meta-pill.live { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .case-screenshot { padding: 0 0 64px; }
+  .screen-frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line2); background: var(--bg2); box-shadow: 0 24px 64px rgba(0,0,0,.4); }
+  .screen-frame img { width: 100%; display: block; }
+  .case-section { padding: 72px 0; border-top: 1px solid var(--line2); }
+  .case-section.alt { background: var(--bg2); }
+  .case-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+  .section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); padding-top: 8px; }
+  .case-content h2 { font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 20px; line-height: 1.2; }
+  .case-content p { color: var(--mut); line-height: 1.7; font-size: 16px; margin-bottom: 16px; }
+  .case-content p:last-child { margin-bottom: 0; }
+  .case-content a { color: #8fa4ff; }
+  .case-content strong { color: var(--txt); font-weight: 600; }
+  .callout { background: rgba(26,79,255,.08); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; color: var(--mut); font-size: 15px; line-height: 1.6; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0 0 20px; }
+  .feature-list li { padding-left: 20px; position: relative; color: var(--mut); font-size: 16px; line-height: 1.6; }
+  .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .tech-stack { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; margin: 24px 0; }
+  .tech-item { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line2); }
+  .tech-item:last-child { border-bottom: none; }
+  .tech-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); padding-top: 2px; }
+  .tech-val { font-size: 14px; color: var(--txt); line-height: 1.5; }
+  .case-cta { padding: 72px 0 96px; border-top: 1px solid var(--line2); }
+  .cta-box { background: linear-gradient(135deg, rgba(26,79,255,.12) 0%, rgba(26,79,255,.04) 100%); border: 1px solid rgba(26,79,255,.25); border-radius: 20px; padding: 48px; max-width: 680px; }
+  .cta-box h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 14px; }
+  .cta-box p { color: var(--mut); font-size: 16px; line-height: 1.65; margin-bottom: 28px; }
+  .btn-accent { background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-decoration: none; display: inline-block; transition: opacity .15s; }
+  .btn-accent:hover { opacity: .88; }
+  .site-foot { border-top: 1px solid var(--line2); padding: 28px 0; }
+  .site-foot .wrap { display: flex; align-items: center; justify-content: space-between; color: var(--mut); font-size: 14px; }
+  .site-foot a { text-decoration: none; color: var(--mut); }
+  .site-foot a:hover { color: var(--txt); }
+  @media(max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; gap: 24px; }
+    .case-sidebar { display: none; }
+    .cta-box { padding: 32px 24px; }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 8 * 0.04) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+</script>
