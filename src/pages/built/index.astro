@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const projects = [
+  {
+    slug: 'cash-ops',
+    title: 'Cash Ops',
+    tagline: 'Turning unreadable cash-order spreadsheets into clean, actionable reports.',
+    tags: ['Internal Tool', 'Web App', 'AI-Assisted'],
+    img: '/img/built/cashops-screen.png',
+    status: 'Live',
+  },
+];
+
+const allTags = [...new Set(projects.flatMap(p => p.tags))];
+---
+
+<Layout
+  title="Built with AI | James Welbes"
+  description="A collection of real tools and products built by James Welbes using AI agents. Case studies with the full story of what was built and why."
+>
+  <Header />
+
+  <main class="built-wrap">
+    <div class="wrap">
+      <header class="built-head stagger">
+        <div class="eyebrow rise">Built with AI</div>
+        <h1 class="rise">Things I've actually shipped</h1>
+        <p class="lead rise">Not demos. Not prototypes. Real tools solving real problems — built with AI as the engine, human judgment at the wheel. Each one has a full case study behind it.</p>
+      </header>
+
+      <div class="filter-bar rise stagger" id="filter-bar">
+        <button class="pill active" data-tag="all">All</button>
+        {allTags.map(tag => (
+          <button class="pill" data-tag={tag}>{tag}</button>
+        ))}
+      </div>
+
+      <ul class="project-grid stagger" id="project-grid">
+        {projects.map(p => (
+          <li class="project-card rise" data-tags={p.tags.join(',')}>
+            <a href={`${base}/built/${p.slug}`}>
+              <div class="card-img-wrap">
+                <img src={base + p.img} alt={p.title + ' screenshot'} loading="lazy" decoding="async" />
+                <span class="status-badge">{p.status}</span>
+              </div>
+              <div class="card-body">
+                <div class="card-tags">
+                  {p.tags.map(t => <span class="tag">{t}</span>)}
+                </div>
+                <h2>{p.title}</h2>
+                <p>{p.tagline}</p>
+                <span class="read-more">Read the case study →</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/'}>Home</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .built-wrap { padding: 72px 0 96px; min-height: 70vh; }
+  .built-head { max-width: 760px; margin: 0 0 48px; }
+  .eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8fa4ff; margin-bottom: 14px; }
+  .built-head h1 { font-size: clamp(32px, 5.5vw, 52px); line-height: 1.06; margin-bottom: 16px; }
+  .built-head .lead { font-size: 18px; color: var(--mut); line-height: 1.6; }
+
+  /* Filter bar */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .pill { background: transparent; border: 1px solid var(--line2); color: var(--mut); font-family: var(--font-body); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .pill:hover { border-color: var(--accent); color: var(--txt); }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Grid */
+  .project-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .project-card a { display: flex; flex-direction: column; text-decoration: none; background: var(--card); border: 1px solid var(--line2); border-radius: 16px; overflow: hidden; height: 100%; transition: border-color .2s, transform .2s; }
+  .project-card a:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .card-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--bg2); }
+  .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .status-badge { position: absolute; top: 12px; right: 12px; background: #16a34a; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+
+  .card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #8fa4ff; background: rgba(26,79,255,.12); border-radius: 4px; padding: 2px 7px; }
+  .card-body h2 { font-size: 20px; line-height: 1.2; color: var(--txt); margin-top: 2px; }
+  .card-body p { font-size: 14px; color: var(--mut); line-height: 1.55; flex: 1; }
+  .read-more { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #8fa4ff; margin-top: 4px; }
+
+  .project-card.hidden { display: none; }
+
+  .site-foot { border-top: 1px solid var(--line2); padding: 28px 0; }
+  .site-foot .wrap { display: flex; align-items: center; justify-content: space-between; color: var(--mut); font-size: 14px; }
+  .site-foot a { text-decoration: none; color: var(--mut); }
+  .site-foot a:hover { color: var(--txt); }
+
+  @media(max-width: 720px) {
+    .built-wrap { padding: 48px 0 72px; }
+    .project-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+
+  // Scroll-reveal
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 6 * 0.05) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+
+  // Tag filter
+  const pills = document.querySelectorAll('.pill');
+  const cards = document.querySelectorAll('.project-card');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const tag = pill.dataset.tag;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(',');
+        card.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+      });
+    });
+  });
+</script>

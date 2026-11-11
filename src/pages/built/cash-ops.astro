@@ -1,0 +1,274 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Cash Ops | Built with AI | James Welbes"
+  description="How I built a tool that turns dense, unreadable cash-order spreadsheets into clean human-readable reports, built with AI in a fraction of the time it would have taken by hand."
+>
+  <Header />
+
+  <main class="case-wrap">
+
+    <!-- HERO -->
+    <section class="case-hero">
+      <div class="wrap">
+        <div class="breadcrumb rise"><a href={base + '/built'}>← Built with AI</a></div>
+        <div class="eyebrow rise">Case Study</div>
+        <h1 class="rise">Cash Ops</h1>
+        <p class="lead rise">Turning unreadable cash-order spreadsheets into clean, actionable reports. In seconds.</p>
+        <div class="meta-row rise">
+          <span class="meta-pill">Internal Tool</span>
+          <span class="meta-pill">Web App</span>
+          <span class="meta-pill">AI-Assisted</span>
+          <span class="meta-pill live">Live</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOT -->
+    <section class="case-screenshot">
+      <div class="wrap">
+        <div class="screen-frame rise">
+          <img
+            src={base + '/img/built/cashops-screen.png'}
+            alt="Cash Ops home screen showing grouped cash order data"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise">
+          <div class="section-label">The Problem</div>
+        </div>
+        <div class="case-content">
+          <h2 class="rise">A spreadsheet nobody could read</h2>
+          <p class="rise">I work for a company that services ATMs, filling them with cash, managing cash orders for ATM operators, and handling cash logistics for certain retail stores. Every day, the team receives a spreadsheet that tells them what cash needs to go where.</p>
+          <p class="rise">The problem: the spreadsheet was <em>designed for data entry, not for humans</em>. Each terminal might have two or three rows, one for bill denominations, one for coin orders, spread across 18+ columns with no visual grouping. A technician trying to figure out "what am I picking up and dropping off today?" had to manually scan dozens of rows, mentally group them, and do the math in their head.</p>
+          <div class="callout rise">
+            <strong>The raw data:</strong> Terminal ID, Tech name, Location, Bank, Branch, Route, Delivery Date, then individual columns for every denomination ($0.05 through $100.00), and a Grand Total. All flat, unsorted, nothing grouped.
+          </div>
+          <p class="rise">One missed row or misread column and you're sending the wrong amount of cash to the wrong ATM. That's not a minor mistake in this industry.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SOLUTION -->
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise">
+          <div class="section-label">The Solution</div>
+        </div>
+        <div class="case-content">
+          <h2 class="rise">Upload. Parse. Read.</h2>
+          <p class="rise">Cash Ops is a web app that takes the raw Excel spreadsheet and transforms it into a clean, grouped, human-readable report. Upload the file, and within seconds you get:</p>
+          <ul class="feature-list rise">
+            <li><strong>Orders grouped by technician</strong>: see your whole day's work in one view, not scattered across 400 rows</li>
+            <li><strong>Locations consolidated</strong>: when a terminal has both a bill order and a coin order, they're shown together under one location card</li>
+            <li><strong>Denominations displayed clearly</strong>: instead of 9 sparse columns, only the denominations that actually have a value are shown, labeled properly ($20 bills, $1 coins, etc.)</li>
+            <li><strong>Grand totals per stop</strong>: instantly see the cash value for each terminal visit</li>
+            <li><strong>Route grouping</strong>: orders sorted by route so the day flows in geographic order</li>
+          </ul>
+          <p class="rise">The same data that required careful manual interpretation now reads like a clean briefing sheet.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO DEMO -->
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise">
+          <div class="section-label">See It</div>
+        </div>
+        <div class="case-content">
+          <h2 class="rise">What a report looks like</h2>
+          <p class="rise">Here's a live walkthrough of an actual report generated from a real cash order spreadsheet.</p>
+          <div class="video-wrap rise">
+            <video
+              src={base + '/img/built/cashops-report.mp4'}
+              controls
+              playsinline
+              preload="metadata"
+              poster={base + '/img/built/cashops-screen.png'}
+            >
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WAS BUILT -->
+    <section class="case-section alt">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise">
+          <div class="section-label">How It Was Built</div>
+        </div>
+        <div class="case-content">
+          <h2 class="rise">AI as the builder, human judgment at the wheel</h2>
+          <p class="rise">Cash Ops was built collaboratively with AI agents. The domain logic (how to group terminals, what the denominations mean, what a technician actually needs to see) came from understanding the real workflow. The AI handled the implementation: parsing the Excel format, writing the grouping logic, building the UI.</p>
+          <div class="tech-stack rise">
+            <div class="tech-item">
+              <span class="tech-label">Frontend</span>
+              <span class="tech-val">Vanilla JS + HTML, no framework overhead for a tool this focused</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">File parsing</span>
+              <span class="tech-val">SheetJS (xlsx), reads the Excel file entirely in-browser, no server upload needed</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Hosting</span>
+              <span class="tech-val">Cloudflare Workers, fast and global, free tier handles the entire load</span>
+            </div>
+            <div class="tech-item">
+              <span class="tech-label">Built with</span>
+              <span class="tech-val">Claude (Hermes Agent), iterated in real sessions with live feedback loops</span>
+            </div>
+          </div>
+          <p class="rise">The whole thing went from "this spreadsheet is impossible to read" to a working, deployed tool in a single session. Without AI, this would have been a multi-day project: spec, design, build, test, deploy. With AI as the implementation engine, the bottleneck shifted to the human side, figuring out exactly what needed to be built.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RESULT -->
+    <section class="case-section">
+      <div class="wrap case-grid">
+        <div class="case-sidebar rise">
+          <div class="section-label">The Result</div>
+        </div>
+        <div class="case-content">
+          <h2 class="rise">A tool the team actually uses</h2>
+          <p class="rise">The app lives at <a href="https://co.crweb.design" target="_blank" rel="noopener">co.crweb.design</a>. It's a focused, single-purpose tool. It does one thing and does it well.</p>
+          <div class="result-stat-row rise">
+            <div class="result-stat">
+              <div class="stat-num">400+</div>
+              <div class="stat-label">rows in a typical spreadsheet</div>
+            </div>
+            <div class="result-stat">
+              <div class="stat-num">&lt;2s</div>
+              <div class="stat-label">to generate a clean report</div>
+            </div>
+            <div class="result-stat">
+              <div class="stat-num">$0</div>
+              <div class="stat-label">ongoing hosting cost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="case-cta">
+      <div class="wrap">
+        <div class="cta-box rise">
+          <h2>Have a problem like this?</h2>
+          <p>An internal process that's slow, error-prone, or just hard to read. These are exactly the kind of things AI can knock out fast. If you've got a workflow that deserves a tool, let's talk.</p>
+          <a href={base + '/#audit'} class="btn-accent">Let's talk →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} James Welbes</span>
+      <a href={base + '/built'}>← All projects</a>
+    </div>
+  </footer>
+
+</Layout>
+
+<style>
+  .case-wrap { padding-bottom: 0; }
+
+  /* Hero */
+  .case-hero { padding: 72px 0 48px; }
+  .breadcrumb { margin-bottom: 20px; font-size: 14px; }
+  .breadcrumb a { color: var(--mut); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--txt); }
+  .eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #8fa4ff; margin-bottom: 14px; }
+  .case-hero h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.03; margin-bottom: 20px; }
+  .case-hero .lead { font-size: 20px; color: var(--mut); line-height: 1.55; max-width: 640px; margin-bottom: 24px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta-pill { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line2); color: var(--mut); }
+  .meta-pill.live { background: #16a34a; border-color: #16a34a; color: #fff; }
+
+  /* Screenshot */
+  .case-screenshot { padding: 0 0 64px; }
+  .screen-frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line2); background: var(--bg2); box-shadow: 0 24px 64px rgba(0,0,0,.4); }
+  .screen-frame img { width: 100%; display: block; }
+
+  /* Sections */
+  .case-section { padding: 72px 0; border-top: 1px solid var(--line2); }
+  .case-section.alt { background: var(--bg2); }
+  .case-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+  .section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); padding-top: 8px; }
+  .case-content h2 { font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 20px; line-height: 1.2; }
+  .case-content p { color: var(--mut); line-height: 1.7; font-size: 16px; margin-bottom: 16px; }
+  .case-content p:last-child { margin-bottom: 0; }
+  .case-content a { color: #8fa4ff; }
+  .case-content em { font-style: italic; color: var(--txt); }
+  .case-content strong { color: var(--txt); font-weight: 600; }
+
+  .callout { background: rgba(26,79,255,.08); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; color: var(--mut); font-size: 15px; line-height: 1.6; }
+
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0 0 20px; }
+  .feature-list li { padding-left: 20px; position: relative; color: var(--mut); font-size: 16px; line-height: 1.6; }
+  .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+  /* Tech stack */
+  .tech-stack { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; margin: 24px 0; }
+  .tech-item { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line2); }
+  .tech-item:last-child { border-bottom: none; }
+  .tech-label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); padding-top: 2px; }
+  .tech-val { font-size: 14px; color: var(--txt); line-height: 1.5; }
+
+  /* Video */
+  .video-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--line2); background: #000; margin-top: 8px; }
+  .video-wrap video { width: 100%; display: block; max-height: 500px; }
+
+  /* Result stats */
+  .result-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+  .result-stat { background: var(--bg2); border: 1px solid var(--line2); border-radius: 12px; padding: 20px; text-align: center; }
+  .stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--accent); letter-spacing: -.02em; }
+  .stat-label { font-size: 13px; color: var(--mut); margin-top: 4px; }
+
+  /* CTA */
+  .case-cta { padding: 72px 0 96px; border-top: 1px solid var(--line2); }
+  .cta-box { background: linear-gradient(135deg, rgba(26,79,255,.12) 0%, rgba(26,79,255,.04) 100%); border: 1px solid rgba(26,79,255,.25); border-radius: 20px; padding: 48px; max-width: 680px; }
+  .cta-box h2 { font-size: clamp(22px, 3vw, 30px); margin-bottom: 14px; }
+  .cta-box p { color: var(--mut); font-size: 16px; line-height: 1.65; margin-bottom: 28px; }
+  .btn-accent { background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 6px; font-family: var(--font-display); font-weight: 600; font-size: 15px; text-decoration: none; display: inline-block; transition: opacity .15s; }
+  .btn-accent:hover { opacity: .88; }
+
+  .site-foot { border-top: 1px solid var(--line2); padding: 28px 0; }
+  .site-foot .wrap { display: flex; align-items: center; justify-content: space-between; color: var(--mut); font-size: 14px; }
+  .site-foot a { text-decoration: none; color: var(--mut); }
+  .site-foot a:hover { color: var(--txt); }
+
+  @media(max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; gap: 24px; }
+    .case-sidebar { display: none; }
+    .result-stat-row { grid-template-columns: 1fr; }
+    .tech-item { grid-template-columns: 1fr; gap: 4px; }
+    .cta-box { padding: 32px 24px; }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const risers = Array.from(document.querySelectorAll('.rise'));
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  risers.forEach((el, i) => { el.style.setProperty('--rd', (i % 8 * 0.04) + 's'); io.observe(el); });
+  setTimeout(() => risers.forEach(el => el.classList.add('in')), 2500);
+</script>
