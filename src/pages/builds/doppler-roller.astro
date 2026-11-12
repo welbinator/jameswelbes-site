@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const base = '';
+---
+
+<Layout title="Doppler Roller | James Welbes">
+  <main class="case-study">
+
+    <div class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Mobile App · Android · 2026</p>
+        <h1>Doppler Roller</h1>
+        <p class="lead">An Android app for generating scoped Doppler service tokens on demand, with masked display and one-tap clipboard copy.</p>
+      </div>
+      <div class="hero-img">
+        <img src={base + '/img/built/doppler-roller-mockup.png'} alt="Doppler Roller app screenshot" />
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>The problem</h2>
+      <p>Doppler is great for managing secrets - but every time I needed a service token to hand off to an agent or script, I had to open the browser, log in to the Doppler dashboard, navigate to the right project and config, generate a token, and manually copy it. That's five or six steps for something I do constantly.</p>
+      <p>On mobile it was even worse. The Doppler web UI is not built for quick phone access, and I wanted to be able to generate a fresh token and copy it in under ten seconds from anywhere.</p>
+    </section>
+
+    <section class="section">
+      <h2>What it does</h2>
+      <ul>
+        <li>Connects to your Doppler account with a personal API token stored securely on-device</li>
+        <li>Lists all your projects and configs in dropdowns</li>
+        <li>Generates a scoped read-only service token for the selected project/config with one tap</li>
+        <li>Displays the token masked with asterisks - copy always gets the real value</li>
+        <li>Tokens can be deleted from within the app when no longer needed</li>
+        <li>Pull down to refresh the project list</li>
+        <li>Settings screen for updating your API key or removing it entirely</li>
+        <li>In-app update check: tap once, browser downloads the new APK, tap the notification to install</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>How it was built</h2>
+      <p>Native Android app written in Kotlin. No frameworks, no React Native - just Kotlin, Material3 components, and OkHttp for the Doppler API calls. API keys are stored using Android's <code>EncryptedSharedPreferences</code>, which encrypts them at rest using AES-256.</p>
+
+      <div class="tech-row">
+        <span class="chip">Kotlin</span>
+        <span class="chip">Android SDK</span>
+        <span class="chip">Material3</span>
+        <span class="chip">OkHttp</span>
+        <span class="chip">Doppler API</span>
+        <span class="chip">GitHub Releases</span>
+        <span class="chip">EncryptedSharedPreferences</span>
+      </div>
+
+      <p>The update mechanism hits the GitHub releases API, compares version numbers, and opens the download URL in the browser. No Play Store, no Firebase - just a GitHub release and a browser download.</p>
+      <p>The design system is dark navy with electric lime accents - <code>#0B111A</code> background, <code>#B5E851</code> primary. All custom drawables for buttons, inputs, and the token card.</p>
+    </section>
+
+    <section class="section">
+      <h2>Result</h2>
+      <p>Generating a service token went from a five-step browser workflow to a two-tap process. It runs entirely on my phone with no server component. The token display is masked by default so I can use the app in public without exposing credentials.</p>
+    </section>
+
+    <div class="cta-block">
+      <a href="https://github.com/welbinator/doppler-roller/releases/latest" class="btn" target="_blank" rel="noopener">Download latest APK</a>
+      <a href="/builds" class="btn btn-ghost">Back to builds</a>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .case-study { max-width: 860px; margin: 0 auto; padding: 60px 24px 100px; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 64px; }
+  @media (max-width: 680px) { .hero { grid-template-columns: 1fr; } }
+  .eyebrow { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin: 0 0 20px; line-height: 1.1; }
+  .lead { font-size: 1.15rem; color: var(--muted); line-height: 1.6; }
+  .hero-img img { width: 100%; border-radius: 16px; }
+  .section { margin-bottom: 56px; }
+  .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; }
+  .section p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+  .section ul { color: var(--muted); line-height: 1.75; padding-left: 20px; }
+  .section ul li { margin-bottom: 8px; }
+  .section code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-size: .9em; }
+  .tech-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+  .chip { font-size: .78rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
+  .cta-block { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 64px; }
+  .btn { display: inline-block; padding: 14px 28px; background: var(--accent); color: #0d1320; font-weight: 700; border-radius: 8px; text-decoration: none; }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+</style>
