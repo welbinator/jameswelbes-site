@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Command Center | Things I've Built"
+  description="A custom internal dashboard built to run a web agency: CRM, invoicing, analytics, WP Fleet, Facebook leads, and client support tickets in one place."
+>
+  <main class="case-study">
+
+    <div class="cs-hero">
+      <div class="cs-hero-inner">
+        <div class="cs-breadcrumb"><a href="/builds">Things I've Built</a> / Command Center</div>
+        <h1>Command Center</h1>
+        <p class="cs-lead">I got tired of bouncing between five different tabs to run my agency. So I built one dashboard that holds everything: leads, clients, invoices, WordPress sites, analytics, and support tickets. It runs my entire operation.</p>
+        <div class="cs-meta-row">
+          <span>Internal Tool</span>
+          <span class="cs-dot">·</span>
+          <span>Web App</span>
+          <span class="cs-dot">·</span>
+          <span>Live since 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-mockup-wrap">
+      <img src="/img/built/command-center-mockup.png" alt="Command Center dashboard" class="cs-mockup" />
+    </div>
+
+    <div class="cs-body">
+
+      <section class="cs-section">
+        <h2>The problem</h2>
+        <p>Running a small web agency means managing a lot of moving parts. Leads coming in from Facebook and contact forms. Clients at different stages. Invoices going out. WordPress sites to monitor. Support tickets from clients who need changes. Each of those used to live somewhere different: a spreadsheet here, a SaaS tool there, email threads everywhere.</p>
+        <p>I wanted one place. My place, built exactly the way I think about my work.</p>
+      </section>
+
+      <section class="cs-section">
+        <h2>What it does</h2>
+        <div class="cs-features">
+          <div class="cs-feature">
+            <div class="cs-feature-title">CRM</div>
+            <p>Every lead and client in one table. Status tracking, follow-up cadence, email activity log, and Facebook lead sync. The follow-up queue surfaces who to contact next based on where they are in the sequence.</p>
+          </div>
+          <div class="cs-feature">
+            <div class="cs-feature-title">Invoicing</div>
+            <p>Send invoices, track what is outstanding, and see overdue flags on the dashboard. Integrates with the client record so I always know the billing status at a glance.</p>
+          </div>
+          <div class="cs-feature">
+            <div class="cs-feature-title">WP Fleet</div>
+            <p>All the WordPress sites I manage in one view. Plugin update status, uptime, last sync. Lets me spot sites that have fallen behind without SSHing into each one.</p>
+          </div>
+          <div class="cs-feature">
+            <div class="cs-feature-title">Analytics</div>
+            <p>Visitor counts across all client sites pulled into one place. No more logging into GA for each domain separately.</p>
+          </div>
+          <div class="cs-feature">
+            <div class="cs-feature-title">Support tickets</div>
+            <p>Every client support request flows here, whether the client logged in through their portal or just sent an email. I see all of them in one queue and can dispatch each one to AI or handle it myself.</p>
+          </div>
+          <div class="cs-feature">
+            <div class="cs-feature-title">Streaming mode</div>
+            <p>One button blurs all client names, emails, and sensitive data. Useful for screen sharing, demos, or recording without exposing private information.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section">
+        <h2>How it was built</h2>
+        <p>The backend is a single Python server running on Hetzner. No framework overhead: just a request handler, a handful of manager modules, and a SQLite-style D1 database on Cloudflare for structured data.</p>
+        <p>The frontend is vanilla JS and CSS. No React, no build step on the server side. This was intentional: the dashboard needs to be fast to load and easy to patch directly on the server when something needs a quick fix.</p>
+        <p>Email is handled through Brevo: outbound for follow-ups and invoices, inbound parsing for support tickets that arrive by email. Notifications go through Web Push so I get alerted on my phone when a new lead or ticket comes in.</p>
+      </section>
+
+      <section class="cs-section cs-stats">
+        <div class="cs-stat">
+          <div class="cs-stat-num">6</div>
+          <div class="cs-stat-label">modules in one dashboard</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-num">0</div>
+          <div class="cs-stat-label">SaaS subscriptions replaced</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-num">1</div>
+          <div class="cs-stat-label">place to run the whole business</div>
+        </div>
+      </section>
+
+      <section class="cs-section cs-stack">
+        <h2>Tech stack</h2>
+        <div class="cs-chips">
+          <span class="cs-chip">Python</span>
+          <span class="cs-chip">Cloudflare D1</span>
+          <span class="cs-chip">Brevo</span>
+          <span class="cs-chip">Hetzner VPS</span>
+          <span class="cs-chip">Web Push</span>
+          <span class="cs-chip">Vanilla JS</span>
+          <span class="cs-chip">Nginx</span>
+        </div>
+      </section>
+
+      <section class="cs-cta">
+        <h2>Want something like this for your business?</h2>
+        <p>I build custom internal tools for small businesses that are tired of paying for five different SaaS products that don't talk to each other.</p>
+        <a href="/contact" class="cs-btn">Let's talk</a>
+      </section>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .case-study { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .cs-hero { padding: 3rem 0 2rem; }
+  .cs-breadcrumb { font-size: 0.85rem; color: var(--color-muted, #888); margin-bottom: 1rem; }
+  .cs-breadcrumb a { color: inherit; text-decoration: underline; }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 1rem; }
+  .cs-lead { font-size: 1.15rem; line-height: 1.65; color: var(--color-text-secondary, #ccc); margin: 0 0 1.5rem; }
+  .cs-meta-row { display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: var(--color-muted, #888); flex-wrap: wrap; }
+  .cs-dot { opacity: 0.4; }
+  .cs-mockup-wrap { margin: 0 -1.5rem 3rem; }
+  .cs-mockup { width: 100%; display: block; border-radius: 10px; }
+  .cs-body { display: flex; flex-direction: column; gap: 3rem; }
+  .cs-section h2 { font-size: 1.4rem; margin: 0 0 1rem; }
+  .cs-section p { line-height: 1.7; color: var(--color-text-secondary, #ccc); margin: 0 0 1rem; }
+  .cs-features { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+  .cs-feature { background: var(--color-surface, #1a1a2e); border: 1px solid var(--color-border, #2a2a3e); border-radius: 10px; padding: 1.25rem; }
+  .cs-feature-title { font-weight: 700; margin-bottom: 0.5rem; }
+  .cs-feature p { font-size: 0.9rem; margin: 0; }
+  .cs-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .cs-stat { text-align: center; padding: 1.5rem; background: var(--color-surface, #1a1a2e); border: 1px solid var(--color-border, #2a2a3e); border-radius: 10px; }
+  .cs-stat-num { font-size: 2.5rem; font-weight: 800; }
+  .cs-stat-label { font-size: 0.85rem; color: var(--color-muted, #888); margin-top: 0.25rem; }
+  .cs-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cs-chip { background: var(--color-surface, #1a1a2e); border: 1px solid var(--color-border, #2a2a3e); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.85rem; }
+  .cs-cta { background: var(--color-surface, #1a1a2e); border: 1px solid var(--color-border, #2a2a3e); border-radius: 12px; padding: 2.5rem; text-align: center; }
+  .cs-cta h2 { margin: 0 0 0.75rem; }
+  .cs-cta p { color: var(--color-text-secondary, #ccc); margin: 0 0 1.5rem; }
+  .cs-btn { display: inline-block; background: var(--color-accent, #4f6ef7); color: #fff; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  @media (max-width: 600px) {
+    .cs-stats { grid-template-columns: 1fr; }
+  }
+</style>
