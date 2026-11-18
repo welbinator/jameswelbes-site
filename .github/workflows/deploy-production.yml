@@ -25,4 +25,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: a3b10674bc6373a81438a11c1c93b3de
-          command: pages deploy dist --project-name=jameswelbes-com --commit-dirty=true
+          command: pages deploy dist --project-name=jameswelbes-site --commit-dirty=true
