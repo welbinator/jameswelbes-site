@@ -280,7 +280,7 @@ async function detectStack(target) {
   if (h('x-squarespace') || has(/static1\.squarespace\.com|squarespace-cdn/)) add('Squarespace', 'Website builder');
 
   // --- CMS / frameworks from HTML ---
-  if (has(/wp-content\/|wp-includes\/|<meta[^>]+WordPress/i)) add('WordPress', 'CMS');
+  if (has(/wp-content\/|wp-includes\/|<meta[^>]+name=["']generator["'][^>]+WordPress/i)) add('WordPress', 'CMS');
   if (has(/\/sites\/default\/files\/|Drupal\.settings|drupal\.js/i)) add('Drupal', 'CMS');
   if (has(/\/media\/jui\/|Joomla!|\/components\/com_/i)) add('Joomla', 'CMS');
   if (has(/cdn\.shopify\.com|shopify\.theme/i)) add('Shopify', 'E-commerce / CMS');
@@ -293,7 +293,7 @@ async function detectStack(target) {
   if (has(/gatsby-|___gatsby/i)) add('Gatsby', 'Framework');
   if (has(/svelte-[0-9a-z]{5,}/i)) add('Svelte', 'Framework');
   if (has(/jquery(?:-|\.)[0-9]|jquery\.min\.js/i)) add('jQuery', 'Library');
-  if (has(/cdn\.jsdelivr\.net\/npm\/bootstrap|class="[^"]*\b(?:col-md-|navbar-|btn-primary)\b/i)) add('Bootstrap', 'CSS framework');
+  if (has(/cdn\.jsdelivr\.net\/npm\/bootstrap|getbootstrap\.com|class="[^"]*\b(?:col-md-\d|navbar-brand|navbar-toggler)\b/i)) add('Bootstrap', 'CSS framework');
   if (has(/\b(?:tw-|md:flex|text-gray-\d|bg-\w+-\d00)\b|tailwind/i)) add('Tailwind CSS', 'CSS framework');
   if (has(/elementor-|elementor\/assets/i)) add('Elementor', 'Page builder');
   if (has(/wpforms|contact-form-7|gravityforms/i)) add('WP Forms plugin', 'Plugin');
